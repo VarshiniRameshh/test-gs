@@ -1,22 +1,14 @@
-import org.owasp.html.PolicyFactory;
-import org.owasp.html.Sanitizers;
+import org.owasp.encoder.Encode;
 
 public class SanitizationUtil {
-
-    // Combine sanitization policies for safe HTML
-    private static final PolicyFactory POLICY = Sanitizers.FORMATTING.and(Sanitizers.LINKS);
-
-    /**
-     * Sanitizes the given input to remove potential XSS payloads.
-     *
-     * @param input the user-provided input
-     * @return sanitized output
-     */
-    public static String sanitize(String input) {
-        if (input == null || input.isEmpty()) {
-            return input;
+    public static String sanitizeInput(String input) {
+        if (input == null) {
+            return null;
         }
-        // Sanitize the input using OWASP Java HTML Sanitizer
-        return POLICY.sanitize(input);
+        // Basic sanitization can still be applied (optional)
+        input = input.replaceAll("<script>", "").replaceAll("</script>", "");
+        
+        // Perform output encoding
+        return Encode.forHtml(input); // Encode for HTML context
     }
 }
