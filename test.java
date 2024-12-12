@@ -1,72 +1,29 @@
-import org.owasp.encoder.Encode;
-import org.owasp.html.PolicyFactory;
-import org.owasp.html.Sanitizers;
+The application is the root cause:
 
-public class SanitizationUtil {
+The application fails to sanitize/encode the input.
+This allows the payload to execute in the browser, regardless of how the payload was injected.
+Browser behavior is standard:
 
-    // Use OWASP HTML Sanitizer to sanitize user input
-    private static final PolicyFactory POLICY = Sanitizers.FORMATTING.and(Sanitizers.LINKS);
+The browser executes the payload because the application delivered unsanitized content. The browser assumes the application is delivering safe content.
+Not a Man-in-the-Middle Attack:
 
-    /**
-     * Sanitizes the input to remove dangerous HTML/JS and escapes it for safe storage.
-     *
-     * @param value The input string to sanitize and escape.
-     * @return The sanitized and escaped input.
-     */
-    public static String sanitizeAndEscapeInput(String value) {
-        if (value == null || value.isBlank()) {
-            throw new IllegalArgumentException("Invalid content: input is blank");
-        }
+This is a legitimate vulnerability assessment where the request and response flow is under your control.
+Security Impact:
 
-        // Sanitize the input using the OWASP sanitizer
-        String sanitizedValue = POLICY.sanitize(value);
+If the issue is exploited, attackers can inject scripts that can lead to data theft, session hijacking, or other malicious activities.
+Response to the Developer
+You can explain the following to the developer:
 
-        // Escape the sanitized input to ensure it's safe for storage or further processing
-        return Encode.forHtml(sanitizedValue);
-    }
+It’s the application’s responsibility to sanitize data:
 
-    /**
-     * Escapes input for HTML rendering.
-     *
-     * @param value The input string to escape.
-     * @return The escaped string for safe HTML rendering.
-     */
-    public static String escapeForHtml(String value) {
-        if (value == null || value.isBlank()) {
-            return "";
-        }
+Unsanitized data should never be sent to the browser. If it is, the application is inherently insecure.
+Browsers rely on the application to send safe content:
 
-        // Escape the input to make it safe for HTML rendering
-        return Encode.forHtml(value);
-    }
+The browser is doing what it is designed to do—rendering content. It does not distinguish between malicious and safe scripts.
+Real-World Exploitability:
 
-    /**
-     * Escapes input for JavaScript rendering.
-     *
-     * @param value The input string to escape.
-     * @return The escaped string for safe JavaScript usage.
-     */
-    public static String escapeForJavaScript(String value) {
-        if (value == null || value.isBlank()) {
-            return "";
-        }
+If an attacker injects malicious scripts (e.g., through a form, query parameter, or header), the unsanitized response will execute in users’ browsers, leading to potential exploitation.
+Mitigation:
 
-        // Escape the input to make it safe for JavaScript
-        return Encode.forJavaScript(value);
-    }
-
-    /**
-     * Escapes input for use in URLs.
-     *
-     * @param value The input string to escape.
-     * @return The escaped string for safe use in URLs.
-     */
-    public static String escapeForUrl(String value) {
-        if (value == null || value.isBlank()) {
-            return "";
-        }
-
-        // Escape the input to make it safe for URLs
-        return Encode.forUriComponent(value);
-    }
-}
+Use proper input validation and output encoding (e.g., escaping special characters like <, >, and ").
+Implement a Content Security Policy (CSP) to prevent inline scripts.
