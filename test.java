@@ -1,73 +1,55 @@
-Dim objExcel, objWorkbook, objSheet, objRange, objFilteredRange, objFileSystem, objOutputFile
-Dim sourceFile, outputFile, filterColumn, filterCriteria, cellValue, row, column
+Imports ClosedXML.Excel
 
-' Define file paths and settings
-sourceFile = "C:\path\to\your\inputfile.xlsx"  ' Replace with your actual Excel file path
-outputFile = "C:\path\to\your\outputfile.txt" ' Replace with your desired output file path
-filterColumn = 3  ' Replace with the correct column index (e.g., 3 for "Status")
-filterCriteria = "Onboarded"  ' Replace with your desired filter criteria
+Module Module1
+    Sub Main()
+        ' Path to the Excel file
+        Dim filePath As String = "C:\path\to\your\file.xlsx"
 
-' Create Excel application object
-Set objExcel = CreateObject("Excel.Application")
-objExcel.Visible = False
-objExcel.DisplayAlerts = False
+        ' Dictionary to store the counts of each status
+        Dim statusCounts As New Dictionary(Of String, Integer)
 
-' Open the workbook and select the first worksheet
-Set objWorkbook = objExcel.Workbooks.Open(sourceFile)
-Set objSheet = objWorkbook.Worksheets(1)
+        ' Load the Excel file
+        Using workbook As New XLWorkbook(filePath)
+            ' Get the first worksheet
+            Dim worksheet = workbook.Worksheet(1)
 
-' Define the range to filter (Assumes data starts at A1)
-Set objRange = objSheet.UsedRange
+            ' Find the column number for "Status"
+            Dim statusColumnNumber As Integer = -1
+            Dim headers = worksheet.Row(1).Cells() ' Assuming the first row contains headers
+            For Each cell In headers
+                If cell.Value.ToString().Trim().ToLower() = "status" Then
+                    statusColumnNumber = cell.Address.ColumnNumber
+                    Exit For
+                End If
+            Next
 
-' Check if data exists
-If objRange Is Nothing Or objRange.Columns.Count < filterColumn Then
-    WScript.Echo "Error: Data not found or invalid column index."
-    objWorkbook.Close False
-    objExcel.Quit
-    WScript.Quit
-End If
+            If statusColumnNumber = -1 Then
+                Console.WriteLine("Status column not found!")
+                Return
+            End If
 
-' Apply AutoFilter
-On Error Resume Next
-objRange.AutoFilter filterColumn, filterCriteria
-If Err.Number <> 0 Then
-    WScript.Echo "Error: Unable to apply filter. Check the column index and criteria."
-    objWorkbook.Close False
-    objExcel.Quit
-    WScript.Quit
-End If
-On Error GoTo 0
+            ' Read the Status column and count occurrences
+            Dim rowCount = worksheet.RowsUsed().Count()
+            For i As Integer = 2 To rowCount ' Assuming data starts from row 2
+                Dim status = worksheet.Cell(i, statusColumnNumber).Value.ToString().Trim()
+                If Not String.IsNullOrEmpty(status) Then
+                    If statusCounts.ContainsKey(status) Then
+                        statusCounts(status) += 1
+                    Else
+                        statusCounts(status) = 1
+                    End If
+                End If
+            Next
+        End Using
 
-' Get filtered data
-Set objFilteredRange = objSheet.UsedRange.SpecialCells(12, 2) ' Get visible cells after filtering
+        ' Display the results
+        Console.WriteLine("Status Counts:")
+        For Each kvp In statusCounts
+            Console.WriteLine($"{kvp.Key}: {kvp.Value}")
+        Next
 
-' Create a text file and write filtered data
-Set objFileSystem = CreateObject("Scripting.FileSystemObject")
-Set objOutputFile = objFileSystem.CreateTextFile(outputFile, True)
-
-For Each row In objFilteredRange.Rows
-    For Each column In row.Columns
-        cellValue = column.Value
-        If IsNull(cellValue) Then
-            cellValue = ""
-        End If
-        objOutputFile.Write cellValue & vbTab  ' Tab-separated
-    Next
-    objOutputFile.WriteLine
-Next
-
-' Close the text file
-objOutputFile.Close
-
-' Clean up
-objWorkbook.Close False
-objExcel.Quit
-Set objFilteredRange = Nothing
-Set objRange = Nothing
-Set objSheet = Nothing
-Set objWorkbook = Nothing
-Set objFileSystem = Nothing
-Set objOutputFile = Nothing
-Set objExcel = Nothing
-
-WScript.Echo "Filtering complete. Output saved to: " & outputFile
+        ' Pause for user to see the output
+        Console.WriteLine("Press any key to exit...")
+        Console.ReadKey()
+    End Sub
+End Module
