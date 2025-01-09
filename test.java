@@ -1,4 +1,4 @@
-Sub Main()
+Sub GenerateStatusReport()
     ' Path to the Excel file
     Dim filePath As String
     filePath = "C:\path\to\your\file.xlsx" ' Update with your file path
@@ -32,11 +32,15 @@ Sub Main()
         End If
     Next i
 
-    ' Display the results
+    ' Display the results in a message box
     Dim key As Variant
+    Dim output As String
+    output = "Status Breakdown:" & vbNewLine & vbNewLine
     For Each key In StatusCount.Keys
-        Debug.Print key & ": " & StatusCount(key) ' Outputs to Immediate Window (Ctrl+G)
+        output = output & key & ": " & StatusCount(key) & vbNewLine
     Next key
+
+    MsgBox output, vbInformation, "Status Report"
 
     ' Close the workbook without saving
     wb.Close False
