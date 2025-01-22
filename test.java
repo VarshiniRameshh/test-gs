@@ -1,52 +1,88 @@
-Sub GenerateStatusReport()
-    ' Path to the Excel file
-    Dim filePath As String
-    filePath = "C:\path\to\your\file.xlsx" ' Update with your file path
-
-    ' Dictionary to store the "Status" count
-    Dim StatusCount As Object
-    Set StatusCount = CreateObject("Scripting.Dictionary")
-
-    ' Load the Excel file
-    Dim wb As Workbook
-    Dim ws As Worksheet
-    Set wb = Workbooks.Open(filePath)
-    Set ws = wb.Sheets(1)
-
-    ' Loop through the data rows
-    Dim lastRow As Long
-    lastRow = ws.Cells(ws.Rows.Count, 1).End(xlUp).Row ' Assuming column A has data
-
-    Dim status As String
-    Dim i As Long
-
-    For i = 2 To lastRow ' Assuming row 1 contains headers
-        status = ws.Cells(i, 3).Value ' Adjust column number to your "Status" column
-
-        If Not IsEmpty(status) Then
-            If StatusCount.exists(status) Then
-                StatusCount(status) = StatusCount(status) + 1
-            Else
-                StatusCount.Add status, 1
-            End If
-        End If
-    Next i
-
-    ' Display the results in a message box
-    Dim key As Variant
-    Dim output As String
-    output = "Status Breakdown:" & vbNewLine & vbNewLine
-    For Each key In StatusCount.Keys
-        output = output & key & ": " & StatusCount(key) & vbNewLine
-    Next key
-
-    MsgBox output, vbInformation, "Status Report"
-
-    ' Close the workbook without saving
-    wb.Close False
-
-    ' Cleanup
-    Set StatusCount = Nothing
-    Set wb = Nothing
-    Set ws = Nothing
-End Sub
+# import xlsxwriter module 
+import xlsxwriter 
+   
+# Workbook() takes one, non-optional, argument   
+# which is the filename that we want to create. 
+workbook = xlsxwriter.Workbook('chart_combined.xlsx')
+ 
+# The workbook object is then used to add new   
+# worksheet via the add_worksheet() method. 
+worksheet = workbook.add_worksheet()
+ 
+# Create a new Format object to formats cells 
+# in worksheets using add_format() method . 
+   
+# here we create bold format object . 
+bold = workbook.add_format({'bold': True})
+ 
+# Add the worksheet data that the charts will refer to.
+headings = ['Number', 'Batch 1', 'Batch 2']
+data = [
+    [2, 3, 4, 5, 6, 7],
+    [10, 40, 50, 20, 10, 50],
+    [30, 60, 70, 50, 40, 30],
+]
+ 
+# Write a row of data starting from 'A1' 
+# with bold format . 
+worksheet.write_row('A1', headings, bold)
+ 
+# Write a column of data starting from  
+# 'A2', 'B2', 'C2' respectively . 
+worksheet.write_column('A2', data[0])
+worksheet.write_column('B2', data[1])
+worksheet.write_column('C2', data[2])
+ 
+# Create a chart object that can be added 
+# to a worksheet using add_chart() method. 
+ 
+# here we create a column chart object .
+# This will use as the primary chart.
+column_chart1 = workbook.add_chart({'type': 'column'})
+ 
+# Add a data series to a chart 
+# using add_series method. 
+   
+# Configure the first series. 
+# = Sheet1 !$A$1 is equivalent to ['Sheet1', 0, 0].
+ 
+# note : spaces is not inserted in b / w
+# = and Sheet1, Sheet1 and !
+# if space is inserted it throws warning.
+column_chart1.add_series({
+    'name':       '= Sheet1 !$B$1',
+    'categories': '= Sheet1 !$A$2:$A$7',
+    'values':     '= Sheet1 !$B$2:$B$7',
+})
+ 
+# Create a new line chart.
+# This will use as the secondary chart.
+line_chart1 = workbook.add_chart({'type': 'line'})
+ 
+# Configure the data series for the secondary chart.
+line_chart1.add_series({
+    'name':       '= Sheet1 !$C$1',
+    'categories': '= Sheet1 !$A$2:$A$7',
+    'values':     '= Sheet1 !$C$2:$C$7',
+})
+ 
+# Combine both column and line charts together.
+column_chart1.combine(line_chart1)
+ 
+# Add a chart title  
+column_chart1.set_title({ 'name': 'Combined chart - same Y axis'})
+ 
+# Add x-axis label 
+column_chart1.set_x_axis({'name': 'Test number'})
+ 
+# Add y-axis label 
+column_chart1.set_y_axis({'name': 'Sample length (mm)'})
+ 
+# add chart to the worksheet with given
+# offset values at the top-left corner of
+# a chart is anchored to cell D2 
+worksheet.insert_chart('D2', column_chart1, {'x_offset': 25, 'y_offset': 10})
+ 
+# Finally, close the Excel file  
+# via the close() method.  
+workbook.close()
