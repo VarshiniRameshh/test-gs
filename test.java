@@ -8,6 +8,5 @@ Are there any open risks associated with MongoDB Atlas?
 
 Has this been approved by the vendor Tech Risk team?
 
-Could you kindly confirm and share the details over email so your team can send the necessary information?
-
+Kindly confirm and loop in your team to share the required details through email.
 Looking forward to your response
