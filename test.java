@@ -1,7 +1,7 @@
-Hi Kishor,
+Could you please confirm if there is an automated key rotation process in place, or if it is currently being overseen manually by the Application Team?
 
-Hope you're doing well. I’m Varshini from Manjari’s team (Tech Risk). I’ve been asked to focus on MongoAtlas and was informed to connect with you to finalize the pattern for this.
+May I check whether the logging configurations are complete and properly integrated with downstream systems such as PAR and Surveillance?
 
-Would you be available for a quick call next week to discuss this? Please let me know a time that works best for you.
+Is the current monitoring setup fully established and integrated with GS monitoring tools, or are there any known gaps?
 
-Looking forward to your response.
+Could you clarify whether the data sensitivity levels have been accurately classified, or if there have been instances of misclassification?
