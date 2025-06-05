@@ -1,7 +1,5 @@
-Could you please confirm if there is an automated key rotation process in place, or if it is currently being overseen manually by the Application Team?
+I’m Varshini from the Tech Risk team, part of Manjari’s group. We are currently reviewing MongoDB-related risk factors, and I’m reaching out to clarify the following:
 
-May I check whether the logging configurations are complete and properly integrated with downstream systems such as PAR and Surveillance?
+Are the logging configurations complete and properly integrated with downstream systems such as PAR and Surveillance?
 
-Is the current monitoring setup fully established and integrated with GS monitoring tools, or are there any known gaps?
-
-Could you clarify whether the data sensitivity levels have been accurately classified, or if there have been instances of misclassification?
+Appreciate your support on this.
