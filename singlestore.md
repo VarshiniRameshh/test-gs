@@ -39,11 +39,12 @@ Each workspace is a part of the Workspace Group (WG), which allows for the confi
 - A Data Definition Language endpoint is attached to the Workspace Group (and this will be used for DACT-LITE and ME Portal internal connectivity).
 - A Data Manipulation Language endpoint is attached to the Workspace Group.
 
-#### Reference Network Architecture Diagram
+## Reference Network Architecture Diagram
 
-**Private network requirement**
+| **Private network requirement** |
+|---------------------------------|
+| Using VPC endpoints and Private links is the Tech Risk-approved way to ensure all traffic traverse private network paths. |
 
-Using VPC endpoints and Private Links is the Tech Risk-approved way to ensure ALL traffic traverse private network paths.
 
 ## SingleStore Customer Portal
 
