@@ -1,11 +1,11 @@
-It’s **11:25 AM IST on Friday, June 27, 2025**, and I’ll create a comprehensive Confluence page draft based on the updated content you provided, including the "Key Discussion Points," your highlighted areas, open questions, extra points, and the detailed notes on project creation, API keys, security, inventory, responsibilities, and items to discuss with Manjari and Kishor. This consolidates all prior context (e.g., overlapping port ranges, uploaded documents) and incorporates the latest call-related insights. The draft is structured, neat, and ready to copy into Confluence, with placeholders for any missing call-specific details.
+It’s **11:41 AM IST on Friday, June 27, 2025**, and I’ll provide a highly detailed and polished Confluence page draft based on all the information you’ve shared. This includes the "Key Discussion Points," your highlighted areas, open questions, extra points, the detailed notes on project creation, API keys, security, inventory, responsibilities, and the items to discuss with Manjari and Kishor. I’ll integrate prior context (e.g., "Overlapping Port Ranges in Multi-Region Deployments" risk, uploaded documents: "Terraform and CFT Integration," "Access Control and Governance," "Inventory and Monitoring," "Key Discussion Points") and the June 20, 2025, call focus (API key rotation and cluster tracking in Inventory Central). The draft will be exhaustive, with clear sections, tables, and actionable steps, leaving placeholders for call-specific details from the transcript (not yet provided). This is designed to be copied directly into Confluence with proper formatting.
 
 ---
 
 # MongoDB Atlas Governance
 
 ## Purpose
-This page serves as the central hub for documenting the setup, security, management, and monitoring of MongoDB Atlas resources, ensuring alignment across teams and addressing identified risks and processes.
+This page serves as the authoritative central hub for documenting the setup, security, management, monitoring, and governance of MongoDB Atlas resources. It consolidates policies, processes, roles, and action items to ensure a secure, scalable, and well-tracked environment across all teams, addressing identified risks and aligning with Global Systems (GS) standards.
 
 ## Sub-Pages
 - [Resource Management](#resource-management)
@@ -23,281 +23,362 @@ This page serves as the central hub for documenting the setup, security, managem
 - [Atlas Search](#atlas-search)
 
 ## Permissions
-- **Edit Access**: Middleware and ME teams.
-- **View Access**: Application teams.
-- **Review Schedule**: Monthly (next review: July 27, 2025).
+- **Edit Access**: Middleware Engineering (ME) and Monitoring Engineering (ME) teams.
+- **View Access**: Application teams, Business Units (BUs), and relevant stakeholders.
+- **Review Schedule**: Monthly reviews scheduled (next review: July 27, 2025, 11:00 AM IST).
 
 ---
 
 ### Resource Management
 
 #### Overview
-Manages allocation and utilization of MongoDB Atlas resources (e.g., clusters, storage).
+This section details the allocation, utilization, and management of MongoDB Atlas resources, including clusters, storage, and network endpoints, ensuring optimal resource use across the organization.
 
 #### Key Points
-- Resources include clusters, VPC endpoints, and API keys across 10–12 organizations and 160–170 projects.
-- Budgeting is flexible, aligned with BUs, no upfront commitments (per "Key Discussion Points").
-- Cluster creation requires DID owner and ME approval; app teams manage resources via Terraform.
+- Resources encompass clusters, Virtual Private Cloud (VPC) endpoints, and API keys, managed across 10–12 organizations and 160–170 projects (per "Key Discussion Points").
+- Budgeting is flexible, aligned with specific use cases or BUs, and does not require large upfront commitments unlike AWS, GCP, or Azure.
+- Cluster creation requires approval from Deployment ID (DID) owners (application-related) and ME, with app teams managing resource creation under clusters using Terraform.
+- Configuration management is handled by application teams via API keys for authorization.
 
 #### Action Items
-| Task            | Responsible Team | Status       |
-|-----------------|------------------|--------------|
-| Define Quotas   | Middleware       | Pending     |
-| Monitor Usage   | Application Teams| Pending     |
+| Task                    | Responsible Team         | Frequency       | Status         | Deadline       |
+|--------------------------|--------------------------|-----------------|----------------|----------------|
+| Define Resource Quotas   | Middleware               | One-time        | Pending        | July 5, 2025   |
+| Monitor Resource Usage   | Application Teams        | Monthly         | Pending        | Ongoing        |
+| Document Resource Allocation Process | Middleware       | One-time        | Pending        | July 5, 2025   |
 
-- Assign middleware to set guidelines by July 5, 2025.
+- Assign Middleware to draft resource management guidelines and share with teams by July 5, 2025.
+- Request feedback from application teams by July 10, 2025.
 
 ---
 
 ### IaC/SDLC
 
 #### Overview
-Outlines Infrastructure as Code (IaC) and Software Development Life Cycle (SDLC) processes.
+Outlines the use of Infrastructure as Code (IaC) and Software Development Life Cycle (SDLC) processes for provisioning and managing MongoDB Atlas resources.
 
 #### Key Points
-- Terraform is primary IaC tool in GS for clusters; CFT supports AWS dependencies (per "Terraform and CFT Integration").
-- SDLC includes risk reviews; app teams use Terraform with API keys for configurations.
-- CFT accounts are mandatory; SkyFoundry details removed.
+- Terraform is the primary IaC tool, hosted within the GS environment, used for deploying clusters with customizable configurations (e.g., three-shard clusters for resiliency).
+- CloudFormation Templates (CFT) support AWS dependencies (e.g., IAM roles, connectivity) and are mandatory for project setups; SkyFoundry details are excluded.
+- SDLC includes governance with risk reviews and approvals, ensuring deployments align with approved configurations.
+- Recent discussions explore MongoDB-native CFT deployments, but Terraform remains the standard.
 
 #### Action Items
-- Document Terraform/CFT setup and SDLC steps.
-- Update by July 5, 2025.
+| Task                    | Responsible Team         | Status         | Deadline       |
+|--------------------------|--------------------------|----------------|----------------|
+| Document Terraform/CFT Setup | Middleware           | Pending        | July 5, 2025   |
+| Update SDLC Guidelines   | Middleware               | Pending        | July 5, 2025   |
+| Assess CFT Adoption      | Middleware               | In Progress    | July 10, 2025  |
+
+- Assign Middleware to document IaC/SDLC processes and evaluate CFT adoption by July 10, 2025.
+- Share draft with application teams for review by July 10, 2025.
 
 ---
 
 ### Network Connectivity to MongoDB Plane
 
 #### Overview
-Details secure connectivity to MongoDB data and control planes.
+Details the secure connectivity mechanisms for MongoDB Atlas data and control planes, addressing risks and enforcement.
 
 #### Key Points
-- Data plane uses PrivateLink (ports 1024–65535); non-GS access blocked.
-- Control plane: 99% read-only, 1–2% privileged access for ops/troubleshooting.
-- Risk: Overlapping ports in multi-region setups mitigated by PrivateLink (initial document).
+- **Data Plane**: Utilizes AWS PrivateLink for encrypted traffic (ports 1024–65535); access from outside GS environment is blocked.
+- **Control Plane**: 99% read-only access for metrics/observability, 1–2% privileged access for operations (e.g., troubleshooting); managed via network policies.
+- **Risk**: Overlapping port ranges in multi-region deployments can force traffic to public endpoints (Medium severity, initial document), mitigated by PrivateLink and proposed automation.
+- Concern: Connectivity to control plane may not be fully controlled; verification needed.
 
 #### Action Items
-- Verify port management and policy enforcement.
-- Assign middleware by July 10, 2025.
+| Task                    | Responsible Team         | Status         | Deadline       |
+|--------------------------|--------------------------|----------------|----------------|
+| Verify Port Management   | Middleware               | Pending        | July 10, 2025  |
+| Confirm Control Plane Policies | Middleware       | Pending        | July 10, 2025  |
+| Document Network Policies| Middleware               | Pending        | July 5, 2025   |
+
+- Assign Middleware to validate port management and control plane policies by July 10, 2025.
+- Review with Tech Risk team by July 15, 2025.
 
 ---
 
 ### Authentication
 
 #### Overview
-Covers methods for verifying user and system identities.
+Covers methods for verifying identities of users and systems accessing MongoDB Atlas.
 
 #### Key Points
-- API keys (public/private pairs) managed by middleware, rotated via AWS secret manager.
-- Break-glass account lacks IdP integration; used for temporary MongoDB support access.
-- Keys support app ops (e.g., pause/resume clusters) and DevOps.
+- API keys are public/private key pairs, managed by Middleware Engineering, stored in AWS Secret Manager, and rotated regularly.
+- Keys are used for control plane access (project-level privileges), application operations (e.g., pause/resume clusters), and DevOps provisioning.
+- Break-glass account exists but lacks Identity Provider (IdP) integration; used for temporary MongoDB support access.
+- Initial assumption: ME team creates keys (clarified as Middleware responsibility).
 
 #### Action Items
-| Task            | Responsible Team | Status       |
-|-----------------|------------------|--------------|
-| Rotate API Keys | Middleware       | In Progress |
-| Integrate IdP   | Middleware       | Pending     |
+| Task                    | Responsible Team         | Frequency       | Status         | Deadline       |
+|--------------------------|--------------------------|-----------------|----------------|----------------|
+| Rotate API Keys          | Middleware               | [TBD, e.g., 90 days] | In Progress | July 5, 2025   |
+| Integrate IdP for Break-Glass | Middleware       | One-time        | Pending        | July 10, 2025  |
+| Document Rotation Process| Middleware               | One-time        | Pending        | July 5, 2025   |
 
-- Confirm rotation schedule by July 5, 2025.
+- Assign Middleware to confirm rotation schedule and IdP integration by July 10, 2025.
+- Share process with application teams by July 10, 2025.
 
 ---
 
 ### Authorization
 
 #### Overview
-Defines access permissions and roles within MongoDB Atlas.
+Defines access permissions, roles, and controls within MongoDB Atlas.
 
 #### Key Points
-- RBAC roles (e.g., DID owners, ME) control access; app teams use API keys.
-- Privileged access limited to PACT/DACT; no host-level access.
-- Risk: Admin access with privilege updates by app teams; compensating controls exist.
+- Role-Based Access Control (RBAC) assigns roles (e.g., DID owners, ME) with privileges; app teams use API keys for authorization.
+- Privileged access (1–2%) limited to Privileged Access Control Team (PACT) and Data Access Control Team (DACT); no host-level access.
+- Risk: Admin access with privilege updates by app teams; compensating controls exist (Kishor’s input).
+- Risk: KMS key creation/rotation by app teams not enforced; detective controls (alerts) noted.
 
 #### Action Items
-| Role          | Task                  | Team           |
-|---------------|-----------------------|----------------|
-| Key Management| Manage API Keys      | Middleware    |
-| Approve Access| DID Owners/ME        | In Progress   |
+| Role          | Task                  | Team           | Status         | Deadline       |
+|---------------|-----------------------|----------------|----------------|----------------|
+| Key Management| Manage API Keys      | Middleware    | In Progress    | July 5, 2025   |
+| Approve Access| DID Owners/ME        | In Progress    | Pending        | July 10, 2025  |
+| Review KMS Controls | Middleware       | Pending        | July 10, 2025  |
 
-- Seek guidance on compensating controls by July 10, 2025.
+- Seek guidance from Manjari on compensating controls for admin access by July 10, 2025.
+- Verify KMS enforcement with Middleware by July 10, 2025.
 
 ---
 
 ### Encryption
 
 #### Overview
-Ensures data protection at rest and in transit.
+Ensures data protection at rest and in transit within MongoDB Atlas.
 
 #### Key Points
-- PrivateLink ensures encrypted data traffic; GS CMK required.
-- DACT required for column-level encryption; TLS v1.2+ enforced.
-- Risk: KMS key creation/rotation by app teams not enforced.
+- PrivateLink ensures encrypted data plane traffic; GS Customer Managed Keys (CMK) are required.
+- DACT is required for column-level encryption at the client side; TLS version 1.2+ enforced for all traffic.
+- Multi-region setups recommended to avoid outages.
 
 #### Action Items
-- Document encryption policies and KMS controls.
-- Assign middleware to verify by July 10, 2025.
+| Task                    | Responsible Team         | Status         | Deadline       |
+|--------------------------|--------------------------|----------------|----------------|
+| Document Encryption Policies | Middleware       | Pending        | July 5, 2025   |
+| Verify KMS Rotation      | Application Teams        | Pending        | July 10, 2025  |
+| Confirm TLS Compliance   | Middleware               | Pending        | July 10, 2025  |
+
+- Assign Middleware to document policies and verify compliance by July 10, 2025.
 
 ---
 
 ### Logging
 
 #### Overview
-Tracks activities and events for auditing.
+Tracks activities and events for auditing, troubleshooting, and compliance.
 
 #### Key Points
-- App teams use Atlas dashboards; no central logging.
-- Platform team discovers clusters every 2 hours for Inventory Central.
+- Application teams use MongoDB Atlas dashboards for project-specific logging.
+- Platform team discovers clusters every 2 hours and feeds data to Inventory Central; frequency adjusts based on usage.
+- No centralized logging solution currently implemented.
 
 #### Action Items
-- Propose central logging solution.
-- Review by July 10, 2025.
+| Task                    | Responsible Team         | Status         | Deadline       |
+|--------------------------|--------------------------|----------------|----------------|
+| Propose Central Logging  | Middleware               | Pending        | July 10, 2025  |
+| Document Discovery Process | Platform Team     | Pending        | July 5, 2025   |
+
+- Assign Middleware to propose a central logging solution by July 10, 2025.
+- Review with application teams by July 15, 2025.
 
 ---
 
 ### Monitoring
 
 #### Overview
-Outlines monitoring of MongoDB Atlas performance.
+Outlines the monitoring of MongoDB Atlas performance, health, and resource utilization.
 
 #### Key Points
-- App teams enable alerts on dashboards; no cross-cluster dashboard.
-- Inventory Central frequency adjusts based on usage.
+- Application teams enable alerts on Atlas dashboards; no cross-cluster dashboard exists.
+- Inventory Central frequency adjusts based on resource usage; app teams responsible for metrics.
 
 #### Action Items
-- Propose central dashboard by July 10, 2025.
+| Task                    | Responsible Team         | Status         | Deadline       |
+|--------------------------|--------------------------|----------------|----------------|
+| Propose Cross-Cluster Dashboard | Middleware   | Pending        | July 10, 2025  |
+| Enable Alerts            | Application Teams        | In Progress    | Ongoing        |
+
+- Assign Middleware to propose a dashboard solution by July 10, 2025.
+- Coordinate with app teams to ensure alert setup by July 15, 2025.
 
 ---
 
 ### User Management
 
 #### Overview
-Manages user accounts and access levels.
+Manages user accounts, access levels, and authentication mechanisms.
 
 #### Key Points
-- Middleware sets organizations; app teams request projects/keys.
-- Privileged access via PACT/DACT; temporary access for MongoDB support.
+- Middleware Engineering sets up organizations; application teams request projects and keys.
+- Privileged access managed via PACT/DACT; temporary access granted to MongoDB support.
+- Break-glass account configuration and management pending clarification.
 
 #### Action Items
-| Task            | Responsible Team | Status       |
-|-----------------|------------------|--------------|
-| Manage Users    | Application Teams| In Progress |
-| Review Access   | Middleware       | Pending     |
+| Task                    | Responsible Team         | Status         | Deadline       |
+|--------------------------|--------------------------|----------------|----------------|
+| Manage User Accounts     | Application Teams        | In Progress    | Ongoing        |
+| Configure Break-Glass    | Middleware               | Pending        | July 10, 2025  |
+| Review Access Process    | Middleware               | Pending        | July 5, 2025   |
 
-- Confirm process by July 5, 2025.
+- Assign Middleware to confirm break-glass setup by July 10, 2025.
+- Share process with teams by July 10, 2025.
 
 ---
 
 ### Inventory/Data Classification
 
 #### Overview
-Tracks assets and classifies data.
+Tracks all MongoDB Atlas assets and classifies data for security and compliance.
 
 #### Key Points
-- Inventory Central logs all assets; platform team updates every 2 hours.
-- Privacy integrated at design; no revisits needed.
+- Inventory Central logs organizations, projects, and clusters; platform team updates every 2 hours.
+- Privacy considerations integrated at design phase; no revisits needed for existing designs.
+- Concern: Unmanaged instances may not be controlled by network policies.
 
 #### Action Items
-| Cluster Name | Region  | Team           | Logged Status |
-|--------------|---------|----------------|----------------|
-| [TBD]        | [TBD]   | [TBD]          | [TBD]         |
+| Cluster Name | Region  | Team           | Logged Status | Last Update    |
+|--------------|---------|----------------|----------------|----------------|
+| [TBD]        | [TBD]   | [TBD]          | [TBD]         | [TBD]          |
+| [TBD]        | [TBD]   | [TBD]          | [TBD]         | [TBD]          |
 
-- Assign middleware to ensure logging by July 10, 2025.
+- Assign Platform Team to ensure all clusters are logged by July 10, 2025.
+- Verify unmanaged instance controls with Middleware by July 10, 2025.
 
 ---
 
 ### Multi-Region Deployment
 
 #### Overview
-Manages MongoDB setups across multiple regions.
+Manages MongoDB Atlas setups across multiple geographic regions for resiliency.
 
 #### Key Points
-- Multi-region recommended for resiliency; GS CMK required.
-- Risk: Port overlaps mitigated by PrivateLink.
+- Multi-region deployments recommended with GS CMK to avoid outages.
+- Risk: Overlapping port ranges (1024–65535) mitigated by PrivateLink and proposed automation.
 
 #### Action Items
-- Document multi-region setup.
-- Review by July 5, 2025.
+| Task                    | Responsible Team         | Status         | Deadline       |
+|--------------------------|--------------------------|----------------|----------------|
+| Document Multi-Region Setup | Middleware       | Pending        | July 5, 2025   |
+| Verify Port Automation   | Middleware               | Pending        | July 10, 2025  |
+
+- Assign Middleware to document setup and verify automation by July 10, 2025.
 
 ---
 
 ### Tenancy
 
 #### Overview
-Defines organizational and project hierarchy.
+Defines the organizational and project hierarchy within MongoDB Atlas.
 
 #### Key Points
-- Hierarchy: Organization > Project > Cluster; 10–12 organizations, 160–170 projects.
-- Organizations tied to BUs, managed by ME.
+- Hierarchy: Organization > Project > Cluster; no intermediate constructs like folders.
+- 10–12 organizations tied to BUs, managed by ME; 160–170 projects equivalent to deployments/Snowflake accounts.
+- Deployment ID mapping to assets lacks clarity; top-level organizations align with GS use cases.
 
 #### Action Items
-- Map sample deployment ID to assets.
-- Update by July 5, 2025.
+| Task                    | Responsible Team         | Status         | Deadline       |
+|--------------------------|--------------------------|----------------|----------------|
+| Map Sample Deployment ID | Middleware               | Pending        | July 5, 2025   |
+| Document Tenancy Structure | Middleware       | Pending        | July 5, 2025   |
+
+- Assign Middleware to map a sample ID and document structure by July 5, 2025.
 
 ---
 
 ### Atlas Search
 
 #### Overview
-Details usage of MongoDB Atlas Search.
+Details the implementation and usage of MongoDB Atlas Search features.
 
 #### Key Points
-- Enables full-text and vector search on clusters.
-- Implementation pending exploration.
+- Supports full-text and vector search on Atlas clusters.
+- Implementation pending exploration and testing.
 
 #### Action Items
-- Assign app teams to test by July 10, 2025.
+| Task                    | Responsible Team         | Status         | Deadline       |
+|--------------------------|--------------------------|----------------|----------------|
+| Test Atlas Search Features | Application Teams | Pending        | July 10, 2025  |
+| Document Search Guidelines | Middleware       | Pending        | July 15, 2025  |
+
+- Assign Application Teams to test features by July 10, 2025.
+- Coordinate with Middleware for guidelines by July 15, 2025.
 
 ---
 
 ### Additional Context
 
 #### Historical Notes
-- **Overlapping Ports**: Mitigated by PrivateLink; verify automation.
-- **Your Highlights**: ME manages organizations, not projects/keys; Terraform in GS; control plane needs policy; unmanaged instances need tracking.
-- **Extra Points**: Break-glass needs IdP; PrivateLink blocks external access; API keys are pairs.
+- **Overlapping Port Ranges**: Medium severity risk of public endpoint use; mitigated by PrivateLink (initial document).
+- **Your Highlights**:
+  - Initial assumption: ME creates projects and API keys (clarified as Middleware for organizations, app teams for projects).
+  - Terraform confirmed in GS, not UI.
+  - Control plane connectivity needs policy verification.
+  - Unmanaged instances’ network policy control unreliable.
+- **Open Questions**:
+  - Clarify ME role, Terraform location, control plane, unmanaged instances.
+  - Types/differences of API keys, management/socialization.
+  - Inventory cluster details with app team creation.
+- **Extra Points**:
+  - Break-glass lacks IdP integration.
+  - Data plane via PrivateLink, external GS access blocked.
+  - API keys are key pairs (confirmed).
 
 #### Call Notes (June 20, 2025)
-- API key rotation and cluster tracking discussed; awaiting transcript for details.
-- [Update with transcript].
+- Focused on API key rotation and cluster tracking in Inventory Central.
+- [Update with transcript for detailed outcomes].
 
 #### Items to Discuss with Manjari
 1. Risk: Admin access privilege updates by app teams; seek compensating control guidance.
-2. Risk: KMS key management by app teams not enforced; verify detective controls.
+2. Risk: KMS key creation/rotation by app teams not enforced; verify detective controls.
 3. Decision: Manage Inventory via ME portal.
 4. Decision: Add Atlas Search and Vector Search features.
 
 #### Items to Ask Kishor
 1. Number of Atlas organizations in GS.
-2. Break-glass account configuration and management.
-3. Middleware authentication/authorization provisioning.
-4. Is CFT mandatory for project setup?
-5. Is SSO/MFA enforced for console access?
-6. SDLC pipeline details (permissions, approvers).
-7. Enforcement of controls (e.g., TLS v1.2+, no cross-realm access).
+2. Break-glass account configuration and management across organizations.
+3. Middleware authentication/authorization provisioning and management.
+4. Is CFT mandatory for project setup (diagram shows optional)?
+5. Is SSO/MFA enforced for console access (app teams and ME)?
+6. SDLC pipeline details:
+   - Are permissions managed through pipeline?
+   - How to ensure privileges stay within SDLC?
+   - Are DID owners, Tech Risk, and ME approvers?
+7. Enforcement of controls:
+   - System accounts only for data plane access.
+   - Prevent cross-realm (prod/non-prod) connectivity/access.
+   - Enforce TLS v1.2+.
+   - No organizations without ME approval.
+   - Data/control plane inaccessible outside GS.
+   - Restrict data plane access between organizations.
 8. URLs to add to the page.
 
 ---
 
 ### Drafting Instructions
-- **Copy to Confluence**: Paste into a new page titled “MongoDB Atlas Governance.”
-- **Customize**: Replace [TBD] with transcript or team data.
-- **Format**: Use Confluence headings and tables.
-- **Update**: Add transcript details under “Call Notes.”
-- **Share**: Notify teams with a deadline (e.g., July 5, 2025).
+- **Copy to Confluence**: Paste this into a new page titled “MongoDB Atlas Governance.”
+- **Customize**: Replace [TBD] with transcript or team-provided data.
+- **Format**: Use Confluence headings (h1, h2, h3) and table tools for clarity.
+- **Update**: Add transcript details under “Call Notes” and adjust action items.
+- **Share**: Notify Middleware, ME, Application Teams, and Manjari/Kishor with a deadline (e.g., July 5, 2025, 5:00 PM IST) via Confluence or email.
 
 ---
 
 ### Next Steps for Today (June 27, 2025)
-1. **Paste Draft**: Spend 1 hour copying into Confluence.
-2. **Add Placeholders**: Insert call notes when available.
-3. **Assign Tasks**: Set deadlines in tables.
-4. **Share**: Email link with, “Draft for review by July 5, 2025.”
-5. **Follow-Up**: Share transcript for refinements.
+1. **Paste Draft**: Spend 1–2 hours copying this into Confluence.
+2. **Add Placeholders**: Insert call notes and responses from Manjari/Kishor when available.
+3. **Assign Tasks**: Update table deadlines and assign owners.
+4. **Share**: Email link with, “Detailed draft for review—please provide feedback by July 5, 2025, 5:00 PM IST.”
+5. **Follow-Up**: Share transcript or meeting outcomes with me for refinements.
 
 ---
 
 ### Analogy
-This is your city blueprint—mapping resources, builders (IaC), roads (network), gates (auth), and tools (search). The call with Manjari and Kishor will fill in the details—start today, and we’ll perfect it!
+This Confluence page is your city’s master blueprint—mapping resources (buildings), builders (IaC/SDLC), roads (network), gates (auth), security (encryption), watchers (logging/monitoring), citizens (users), assets (inventory), regions (multi-region), neighborhoods (tenancy), and search tools (Atlas Search). The call with Manjari and Kishor will add the final details—start building today, and we’ll perfect it together!
 
 **Notes on Your Requests**:
-- **Covered Items**: Terraform in GS, ME role, PrivateLink, API key pairs confirmed. Unmanaged instances and control plane need verification.
-- **Extra Items**: Consider adding disaster recovery and compliance sections if relevant.
-- Share transcript or answers from Manjari/Kishor, and I’ll update. Let me know your thoughts!
+- **Covered Items**: Terraform in GS, ME role (organizations), PrivateLink, API key pairs confirmed. Unmanaged instances, control plane, and KMS need verification.
+- **Extra Items**: Consider adding disaster recovery or compliance if raised in calls.
+- Share transcript or Manjari/Kishor responses, and I’ll update. Let me know your thoughts or additional needs!
