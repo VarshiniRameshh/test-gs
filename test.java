@@ -1,5 +1,5 @@
-Access is managed through MongoDB Atlas roles, with users assigned specific permissions (like read-only, read-write, or admin) at the project level.
+App teams use MongoDB Atlas dashboards for their own project-level logs.
 
-Only authorized users from within the GS environment can access Atlas — access is enforced via SSO and role mapping.
+The Platform team runs a discovery every 2 hours to detect clusters and send that data to Inventory Central. This check runs more or less frequently depending on usage.
 
-User provisioning (adding/removing access) is typically handled through the ME portal and approvals from DID owners.
+No centralized logging system is currently in place for all projects.
