@@ -1,3 +1,7 @@
-Access in MongoDB Atlas is managed using Role-Based Access Control (RBAC). Roles like DID owners, the Middleware Engineering (ME) team, and app teams are assigned specific permissions.
+MongoDB Atlas captures activity and events to help with auditing and troubleshooting.
 
-App teams use API keys to perform actions within their projects, based on the roles assigned.
+App teams use MongoDB Atlas dashboards for their own project-level logs.
+
+The Platform team runs a discovery every 2 hours to detect clusters and send that data to Inventory Central. This check runs more or less frequently depending on usage.
+
+No centralized logging system is currently in place for all projects.
