@@ -1,7 +1,3 @@
-Yes, API keys for control plane access are tied to specific roles and projects and created by the Platform (ME) team.
+The R&D labs mentioned here are basically non-production setups used by engineering or analytics teams for things like testing, experimenting, or trying out new features — kind of like a sandbox. These environments aren’t meant to directly connect to production systems, which is why that access is blocked by default.
 
-For console access, TMD requests are needed, which is standard internal access control flow.
-
-Data plane authorization (e.g., who can access collections, read/write permissions) is done by the application teams using Infrastructure-as-Code (IaC) tools like Terraform.
-
-These changes are done via SDLC pipelines, ensuring traceability and approvals.
+If there’s ever a need to connect from non-prod to prod, it has to go through a special approval process. That way, the team can make sure there’s a solid reason for it and that all the right safeguards are in place.
