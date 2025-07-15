@@ -1,90 +1,66 @@
-1. Non-Prod to Prod Connectivity
-Risk Highlighted: Non-prod system accounts must not have privileges or access to prod Atlas resources.
+Here are the **detailed answers** for the **5 covered** and **2 partially covered** questions from your list:
 
-Action: Add this as an explicit requirement; currently not enforced across all data platforms.
+---
 
-Pending: Confirm if system accounts can be clearly classified as prod vs non-prod.
+### ✅ **Covered (5)**
 
-2. DLC Pipeline Requirements
-Control: Privilege updates must have approval via pipeline.
+---
 
-Decision: Data owners must be involved in approvals.
+**5. Have we enforced whitelisting IP addresses from GS network for both control plane accesses?**
+✔️ **Yes, Covered.**
+The **Connectivity Review** section explicitly mentions:
 
-Next Step: Raise this during Design Review and validate how each BU enforces it.
+> *"Firewall rules are edited to allow network traffic only after Connectivity Review by Tech Risk."*
+> This implies IP restrictions are reviewed and enforced.
 
-3. Atlas Access and Authentication
-Observation: Access to MongoDB Atlas requires an AWS account.
+---
 
-Conflict: Architecture diagram marks AWS account as optional, while KMS constraints indicate it’s mandatory.
+**9.a. Only system accounts can be given access to data plane by app teams**
+✔️ **Yes, Covered.**
+Stated in the data access model that only system accounts (not human users) are used for database access via SDLC pipelines.
 
-Action: Raise this as a question for clarification (check diagram + team thread).
+---
 
-4. Connectivity Review Rules
-Approved Automatically If:
+**9.b. Prevent cross realm (prod, non-prod) connectivity**
+✔️ **Yes, Covered.**
+Clearly mentioned:
 
-All targets are non-prod endpoints.
+> *"No cross-environment access (e.g., non-prod → prod) is allowed."*
 
-All sources are non-prod deployments, hosts, or collections.
+---
 
-Port range is within approved non-prod range.
+**9.c. Prevent cross realm (non-prod service account accessing prod DB)**
+✔️ **Yes, Covered.**
+Same as above — the document emphasizes case-by-case approval for any cross-environment flow, and these are not open by default.
 
-To be Denied:
+---
 
-Any connection from prod to non-prod (due to higher risk of data exposure).
+**9.e. No new MongoDB Atlas organizations are created without ME approval**
+✔️ **Yes, Covered.**
+This is reflected in:
 
-Add exception cases to be discussed with Kishore.
+> *"Organizations are linked to business units and managed by platform team. If the use case is for a new business line, a new Atlas organization will be set up."*
+> This implies ME/platform control.
 
-5. Write Restrictions by Classification
-Query: Clarify if API key writes from lower-classification deployments to higher-classification collections are blocked.
+---
 
-Terminology Confirmation: Collection = Database Project in Atlas.
+### 🟡 **Partially Covered (2)**
 
-Action: Reconfirm with Kishore if classification is set at the collection or project level.
+---
 
-6. API Key Traceability
-Must be used only via SDLC pipelines.
+**8.a. Is only IAM roles supported in GS? Password, certificates, LDAP, and OIDC are blocked?**
+🟡 **Partially Covered.**
+The document mentions:
 
-Stored securely using customer-managed KMS.
+> *"Teams can set up database users to use AWS IAM Users or Role ARNs for authentication."*
+> But it doesn't explicitly say that **passwords, certificates, LDAP, and OIDC are blocked**, so this is only partially addressed.
 
-API keys must be rotated periodically.
+---
 
-7. Atlas Endpoints – Reference Location
-No confluence page exists (unlike Snowflake or Singlestore).
+**9.e. New orgs only with ME approval?**
+🟡 **Partially Covered.**
+As mentioned above, it's **implied** ME/platform team manages new org creation, but not directly stated as a control or enforcement step.
 
-Action: Follow up to obtain the definitive endpoint list for reference validation.
+---
 
-8. Pattern Page Coverage
-Pattern page is primarily for production environments.
-
-If something differs for non-prod, it should be called out explicitly.
-
-Action: Clean up references where applicable and flag what's not covered on the current pattern page.
-
-9. POC Phase 2: Terraform + CDK Integration
-Goal: Manage both AWS and Atlas resources under same IaC (CDK/Terraform).
-
-Observation: AWS resource provisioning done via CDK; Atlas via Terraform.
-
-Action: Track progress and discuss dependency with cloud enablement team.
-
-10. Access Restrictions
-System accounts only for production – direct user access blocked.
-
-For non-prod, direct user access is allowed.
-
-Clarification: Ensure this is reflected only in prod-specific pattern pages.
-
-📌 Outstanding Questions to Finalize Before Kishore Discussion
-Can Atlas system accounts be explicitly classified as prod or non-prod?
-
-Is the AWS account optional or mandatory for Atlas?
-
-Are API keys mandatorily rotated and traceable in all environments?
-
-Confirm if classification is set at project or collection level.
-
-Validate if cross-region connectivity is blocked (especially in prod).
-
-Is there any confluence or system to track Atlas endpoints like other platforms?
-
-How is classification parity enforced in pipeline-level approvals (e.g., NDS, DP20, etc.)?
+Let me know if you want me to draft responses for the remaining **not covered** ones.
