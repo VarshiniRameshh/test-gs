@@ -1,6 +1,5 @@
+Organizations must ensure that records are protected to meet legal, regulatory, contractual, and business requirements while maintaining their availability, confidentiality, integrity, and usability.
 
-Organizations must identify, document, and protect intellectual property rights (IPR), including copyrights, trademarks, patents, and software licenses. Responsibilities for managing IP should be clearly defined, with proper controls in place to prevent unauthorized use or distribution of protected materials.
+Clear procedures should be established for storage, custody, and authorized destruction of records, aligned with retention schedules based on business and legal needs. Records must be identifiable by type, classification, and retention period.
 
-Use of software, digital media, and other copyrighted content must follow licensing terms, and periodic reviews should ensure compliance. Contracts with employees, suppliers, and third parties should specify ownership and usage rights for created or shared IP.
-
-Training and awareness programs should be conducted to ensure staff understand IPR obligations, including the use of open-source or third-party content. Legal advice may be necessary in complex or cross-border IP matters.
+Both physical and electronic records should be stored securely, with accessibility maintained throughout their lifecycle. Records must be retrievable in required formats and within expected timeframes. Electronic records should be safeguarded from media failure or obsolescence using technologies like encryption and digital signatures to ensure authenticity and long-term access.
