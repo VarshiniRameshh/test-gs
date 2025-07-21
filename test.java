@@ -1,14 +1,8 @@
-Organizations should define procedures to identify, collect, acquire, and preserve evidence related to security events. Procedures must ensure:
+Organizations must plan to maintain information security during disruptions by:
 
-Evidence is admissible and reliable for legal or disciplinary use.
-
-Jurisdiction-specific legal standards are considered.
-
-Records are complete, unaltered, and collected from valid systems.
-
-Copies are identical to originals.
-
-Certification or qualifications of personnel/tools strengthen evidence integrity.
-
-Digital evidence handling must be carefully planned, especially when legal action is expected.
+Identifying and including information security requirements in business continuity plans.
+Developing and testing plans to maintain or restore security of critical business information.
+Maintaining existing security controls or applying compensating controls when original ones can't be upheld.
+Ensuring restoration of information security to the required level and within defined timeframes.
+This ensures protection, continuity, and resilience of information assets during interruptions.
 
