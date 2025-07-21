@@ -1,5 +1,7 @@
-Organizations must ensure that records are protected to meet legal, regulatory, contractual, and business requirements while maintaining their availability, confidentiality, integrity, and usability.
+Organizations must ensure the preservation of privacy and protection of Personally Identifiable Information (PII) in accordance with legal, regulatory, contractual, and business requirements, while maintaining confidentiality, integrity, and availability.
 
-Clear procedures should be established for storage, custody, and authorized destruction of records, aligned with retention schedules based on business and legal needs. Records must be identifiable by type, classification, and retention period.
+Clear policies and procedures should be developed and communicated to all relevant stakeholders for handling and safeguarding PII. These should include role assignments, such as a privacy officer, to guide and oversee compliance efforts.
 
-Both physical and electronic records should be stored securely, with accessibility maintained throughout their lifecycle. Records must be retrievable in required formats and within expected timeframes. Electronic records should be safeguarded from media failure or obsolescence using technologies like encryption and digital signatures to ensure authenticity and long-term access.
+Organizations must define and enforce responsibilities for PII protection aligned with applicable legislation and regulations. Both technical and organizational controls must be implemented to ensure secure collection, processing, transmission, storage, and deletion of PII.
+
+Global legal requirements may impose restrictions on PII processing and cross-border transfers. Compliance frameworks such as ISO/IEC 29100 and ISO/IEC 27701 provide guidance on privacy information management. Risk assessments like Privacy Impact Assessments (PIA), as outlined in ISO/IEC 29134, help identify and manage privacy risks effectively.
