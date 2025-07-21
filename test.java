@@ -1,6 +1,14 @@
-Organizations should establish procedures to track and evaluate security incidents to reduce the risk of recurrence. Key actions include:
-Enhancing the incident management plan based on past scenarios.
-Identifying root causes of serious incidents and updating risk assessments and controls accordingly.
-Using data on incident types, volumes, and costs to inform security improvements.
-Strengthening user awareness and training by sharing examples and prevention strategies.
+Organizations should define procedures to identify, collect, acquire, and preserve evidence related to security events. Procedures must ensure:
+
+Evidence is admissible and reliable for legal or disciplinary use.
+
+Jurisdiction-specific legal standards are considered.
+
+Records are complete, unaltered, and collected from valid systems.
+
+Copies are identical to originals.
+
+Certification or qualifications of personnel/tools strengthen evidence integrity.
+
+Digital evidence handling must be carefully planned, especially when legal action is expected.
 
