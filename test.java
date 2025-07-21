@@ -1,15 +1,11 @@
-Organizations must conduct independent reviews of their information security approach, including people, processes, and technology, to ensure its ongoing suitability, adequacy, and effectiveness.
+Organizations must regularly review compliance with their information security policy, topic-specific policies, rules, and applicable standards to ensure effective implementation and alignment with business objectives.
 
-Periodic reviews should be planned and initiated by management, focusing on identifying improvements and necessary changes aligned with security policies and specific controls. Reviews must be conducted by individuals or entities independent of the area being assessed, such as internal audit teams or external specialists, and findings should be reported to management with appropriate documentation maintained.
+Managers or designated personnel should verify that defined security controls are followed, using tools and reports where feasible. When non-compliance is identified, it must trigger a formal process including:
 
-If reviews identify inadequacies (e.g., unclear objectives, non-compliance with policies), corrective actions must be initiated.
+Identifying root causes
 
-Reviews should also be conducted during significant events such as:
+Implementing corrective actions
 
-* Changes in applicable laws or regulations
-* Security incidents
-* Launch of new business models or services
-* Updates to current products or services
-* Modifications in the organization’s security controls or procedures
+Reviewing their effectiveness
 
-These steps help maintain compliance and ensure continual improvement of the organization’s information security posture.
+All findings and actions must be documented, maintained, and reported to appropriate stakeholders, including external reviewers when required. Corrective actions should be completed within risk-based timelines. If delayed, progress should be tracked and reassessed during follow-ups.
