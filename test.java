@@ -1,22 +1,21 @@
-Here is a **summarized and combined guidance** for the *Screening (A.6.1)* control to fill in your column, as per Manjari’s instruction:
+Employment contracts should include personnel and organizational responsibilities for information security.
 
----
+Ensure inclusion of:
 
-### **Summary for A.6.1 – Screening**
+Confidentiality or non-disclosure agreements before granting access to confidential data or assets.
 
-* Perform background verification checks on all candidates before employment and periodically during employment, as per laws and regulations.
-* Ensure checks are proportional to business needs, role criticality, and data access risks.
-* Include:
+Legal responsibilities and rights (e.g. data protection, copyright laws).
 
-  * Satisfactory references (business/personal)
-  * Verification of CV completeness and accuracy
-  * Confirmation of academic/professional qualifications
-  * Independent identity verification (e.g. passport)
-  * Further checks (credit or criminal) if role is critical
-* Define criteria, eligibility, frequency, and limitations for verification reviews.
-* Complete verifications in a timely manner to avoid delays in onboarding, asset deployment, or potential employment termination.
-* Repeat checks periodically based on role criticality.
+Responsibilities for classifying and managing information and processing facilities.
 
----
+Handling of information received from external parties.
 
-Let me know if you want similar concise summaries for other controls in this workbook today.
+Disciplinary actions for non-compliance with security requirements.
+
+Communicate security roles and responsibilities during pre-employment.
+
+Terms should align with security policies and be updated upon legal, regulatory, or policy changes.
+
+A code of conduct should define expected security behaviours, ethical use, and PII protection.
+
+Suppliers with personnel accessing organizational information should also have similar contractual agreements.
