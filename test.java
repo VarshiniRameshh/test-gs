@@ -1,8 +1,11 @@
-Organizations must plan to maintain information security during disruptions by:
+Organizations must ensure ICT readiness for business continuity by:
 
-Identifying and including information security requirements in business continuity plans.
-Developing and testing plans to maintain or restore security of critical business information.
-Maintaining existing security controls or applying compensating controls when original ones can't be upheld.
-Ensuring restoration of information security to the required level and within defined timeframes.
-This ensures protection, continuity, and resilience of information assets during interruptions.
+Planning, implementing, testing, and maintaining ICT continuity strategies based on business impact analysis (BIA) and risk assessments.
 
+Ensuring ICT services meet recovery objectives (RTO/RPO) during disruptions.
+
+Having a competent organizational structure, approved continuity plans, and capacity specifications.
+
+Including ICT systems in business continuity strategies to support critical services.
+
+This ensures availability and resilience of ICT services during failures or disruptions.
