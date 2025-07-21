@@ -1,11 +1,12 @@
-Organizations must ensure ICT readiness for business continuity by:
+Organizations must identify, document, and comply with all legal, statutory, regulatory, and contractual information security requirements. This includes:
 
-Planning, implementing, testing, and maintaining ICT continuity strategies based on business impact analysis (BIA) and risk assessments.
+Integrating legal obligations during policy development, control design, and risk assessments.
 
-Ensuring ICT services meet recovery objectives (RTO/RPO) during disruptions.
+Regularly reviewing applicable laws across jurisdictions where the organization operates or transfers data.
 
-Having a competent organizational structure, approved continuity plans, and capacity specifications.
+Ensuring compliance with cryptography-related regulations (e.g., import/export restrictions, encryption usage, digital signatures).
 
-Including ICT systems in business continuity strategies to support critical services.
+Addressing information security clauses in client, supplier, and insurance contracts.
 
-This ensures availability and resilience of ICT services during failures or disruptions.
+Legal advice is recommended when handling sensitive areas like encryption across borders.
+
