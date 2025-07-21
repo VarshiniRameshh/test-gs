@@ -1,21 +1,24 @@
-Employment contracts should include personnel and organizational responsibilities for information security.
+Establish an awareness, education, and training programme aligned with security policies and procedures, including controls implemented to protect information.
 
-Ensure inclusion of:
+Conduct awareness and training periodically, and for new personnel or role changes.
 
-Confidentiality or non-disclosure agreements before granting access to confidential data or assets.
+Assess understanding post-training to measure effectiveness.
 
-Legal responsibilities and rights (e.g. data protection, copyright laws).
+Awareness programmes should:
 
-Responsibilities for classifying and managing information and processing facilities.
+Make personnel aware of their responsibilities and how to fulfil them.
 
-Handling of information received from external parties.
+Be planned considering all types of personnel (internal, external, suppliers).
 
-Disciplinary actions for non-compliance with security requirements.
+Include repeated and varied activities (e.g. campaigns, posters, newsletters, e-learning).
 
-Communicate security roles and responsibilities during pre-employment.
+Cover topics like management commitment, legal and policy compliance, personal accountability, security procedures, incident reporting, and resources for further learning.
 
-Terms should align with security policies and be updated upon legal, regulatory, or policy changes.
+Education and training programmes should:
 
-A code of conduct should define expected security behaviours, ethical use, and PII protection.
+Address technical teams’ specific skill requirements to maintain security levels.
 
-Suppliers with personnel accessing organizational information should also have similar contractual agreements.
+Use varied delivery methods (lectures, self-studies, mentoring, on-the-job training, external consultants, conferences, online modules).
+
+Ensure technical staff keep knowledge up to date and acquire missing skills as needed.
+
