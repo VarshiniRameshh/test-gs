@@ -1,19 +1,35 @@
-Define and enforce security responsibilities that remain valid after termination or job changes (e.g. confidentiality, intellectual property, knowledge retention).
-Ensure these responsibilities are included in employment contracts and continue post-employment where needed.
-Manage changes in responsibility as part of role changes or termination processes, identifying and transferring security roles and duties to other individuals.
-Establish communication procedures for operational changes to personnel, relevant parties, and contacts (e.g. customers, suppliers).
-Apply termination/change processes to employees and suppliers alike.
+Organizations must establish a remote working policy that defines clear security requirements, access controls, and acceptable use conditions for remote environments. The policy should cover both physical and technical safeguards for secure remote operations.
 
+Key measures include:
 
-Identify, document, review, and sign confidentiality or NDA agreements to protect organizational information.
-Agreements should cover:
-Definition and classification of protected information
-Duration of confidentiality, including indefinite if required
-Required actions upon agreement termination
-Responsibilities to avoid disclosure
-Ownership of information, trade secrets, and IP
-Permitted use and rights of signatories
-Right to audit and monitor activities
-Process for reporting unauthorized disclosures or leaks
-Consequences for non-compliance
-Review agreements periodically to ensure continued relevance and legal compliance.
+Assessing and maintaining the physical security of remote workspaces
+
+Requiring secure setups such as lockable storage, secure transport, and clear desk policies
+
+Defining authorized work environments and data access parameters
+
+Securing communications through VPNs, encrypted channels, and virtual desktops
+
+Preventing unauthorized access by non-employees (e.g., family or visitors)
+
+Ensuring home/public networks are securely configured
+
+Using strong authentication and avoiding weak login methods
+
+Restricting use of personal devices unless risk-assessed and approved
+
+Additional provisions should:
+
+Outline acceptable tasks, authorized access, and information handling procedures
+
+Mandate security training for remote users and support teams
+
+Require secure remote communication tools with controls like inactivity timers and location awareness
+
+Cover visitor restrictions, support availability, and equipment insurance
+
+Include backup, continuity, and monitoring processes
+
+Ensure access is revoked and equipment returned when remote work ends
+
+These controls aim to maintain information security even outside the organization’s physical perimeter.
