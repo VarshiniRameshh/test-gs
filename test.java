@@ -1,24 +1,19 @@
-Establish an awareness, education, and training programme aligned with security policies and procedures, including controls implemented to protect information.
+Establish and communicate a formal disciplinary process to address information security policy violations.
 
-Conduct awareness and training periodically, and for new personnel or role changes.
+Verify the violation before initiating action.
 
-Assess understanding post-training to measure effectiveness.
+Process should provide a graduated response considering:
 
-Awareness programmes should:
+Nature, severity, and impact of the breach
 
-Make personnel aware of their responsibilities and how to fulfil them.
+Whether it was intentional (malicious) or unintentional (accidental)
 
-Be planned considering all types of personnel (internal, external, suppliers).
+If it is a first or repeated offence
 
-Include repeated and varied activities (e.g. campaigns, posters, newsletters, e-learning).
+Whether proper training was provided
 
-Cover topics like management commitment, legal and policy compliance, personal accountability, security procedures, incident reporting, and resources for further learning.
+Consider legal, regulatory, contractual, and business requirements in responses.
 
-Education and training programmes should:
+Use as a deterrent to prevent violations by personnel and interested parties.
 
-Address technical teams’ specific skill requirements to maintain security levels.
-
-Use varied delivery methods (lectures, self-studies, mentoring, on-the-job training, external consultants, conferences, online modules).
-
-Ensure technical staff keep knowledge up to date and acquire missing skills as needed.
-
+Immediate action may be needed for deliberate violations.
