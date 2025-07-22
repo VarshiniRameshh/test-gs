@@ -1,35 +1,30 @@
-Organizations must establish a remote working policy that defines clear security requirements, access controls, and acceptable use conditions for remote environments. The policy should cover both physical and technical safeguards for secure remote operations.
+Establish clear procedures and channels for reporting security events promptly.
 
-Key measures include:
+Ensure all personnel are aware of their responsibility to report incidents, breaches, and vulnerabilities.
 
-Assessing and maintaining the physical security of remote workspaces
+Reporting mechanisms must be simple, accessible, and readily available.
 
-Requiring secure setups such as lockable storage, secure transport, and clear desk policies
+Events to report include:
 
-Defining authorized work environments and data access parameters
+Ineffective security controls
 
-Securing communications through VPNs, encrypted channels, and virtual desktops
+Breach of confidentiality, integrity, or availability
 
-Preventing unauthorized access by non-employees (e.g., family or visitors)
+Human errors
 
-Ensuring home/public networks are securely configured
+Policy or standard violations
 
-Using strong authentication and avoiding weak login methods
+Physical security breaches
 
-Restricting use of personal devices unless risk-assessed and approved
+Unauthorized system changes
 
-Additional provisions should:
+System malfunctions or abnormal behaviors
 
-Outline acceptable tasks, authorized access, and information handling procedures
+Access violations
 
-Mandate security training for remote users and support teams
+Identified vulnerabilities
 
-Require secure remote communication tools with controls like inactivity timers and location awareness
+Suspected malware infections
 
-Cover visitor restrictions, support availability, and equipment insurance
+Personnel should avoid investigating incidents on their own and report them through proper channels.
 
-Include backup, continuity, and monitoring processes
-
-Ensure access is revoked and equipment returned when remote work ends
-
-These controls aim to maintain information security even outside the organization’s physical perimeter.
